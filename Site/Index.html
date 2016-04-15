@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Ugolki</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body ng-app="ugolkiApp">
+    <div ng-controller="LoginController">
+        <div class="menu">
+            <form name="loginForm" novalidate class="simple-form" ng-show="user.hash == undefined || user.hash.length < 1">
+                <input autocomplete="off" name="name" type="text" placeholder="Name" ng-model="user.name" required /><br />
+                <input autocomplete="off" name="password" type="password" placeholder="Password" ng-model="user.password" required /><br />
+                <button ng-disabled="loginForm.$invalid" ng-click="login(user)">Login (Register)</button>
+            </form>
+            <div class="username" ng-show="user.hash != undefined && user.hash.length > 0">{{user.name}} <a class="logout" ng-click="logout(user)">logout</a></div>
+            <button ng-click="createRoom()">Create Room</button>
+            <!--<button ng-click="getRooms()">Rooms</button>
+            <button ng-click="getUsers()">Users</button>
+            <pre>form = {{user | json}}</pre>
+            <pre>master = {{master | json}}</pre>
+            <pre>rooms = {{rooms | json}}</pre>
+            <pre>rooms = {{users | json}}</pre>-->
+            <div>
+                <div class="room-list" ng-repeat="room in rooms">
+                    <div class="room-name">Room {{$index + 1}}</div>
+                    <div class="room-player" ng-class="{op07: room.Player1 == null}">Player 1: <span class="message-user">{{room.Player1.Name}}</span></div>
+                    <div class="room-player" ng-class="{op07: room.Player2 == null}">Player 2: <span class="message-user">{{room.Player2.Name}}</span></div>
+                    <div class="room-player" ng-class="{op07: room.Observers.length == 0}">Observers: {{room.Observers.length}}</div>
+                    <button ng-click="join(room, $index)">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="room" ng-show="roomIndex != undefined && roomIndex >= 0">
+            <button ng-click="exit(rooms[roomIndex].RoomId)">Exit</button>
+            <button ng-show="(rooms[roomIndex].Player1.Name == user.name || rooms[roomIndex].Player2.Name == user.name) && rooms[roomIndex].State != 1 && rooms[roomIndex].State != 2" ng-click="setObserver(rooms[roomIndex].RoomId)">Became an observer</button>
+            <button ng-show="rooms[roomIndex].Player1.Name != user.name && rooms[roomIndex].Player2.Name != user.name && rooms[roomIndex].State != 1 && rooms[roomIndex].State != 2" ng-click="setPlayer(rooms[roomIndex].RoomId)">Became a player</button>
+            <button ng-show="rooms[roomIndex].Player1.Name == user.name && !rooms[roomIndex].Ready1 || rooms[roomIndex].Player2.Name == user.name && !rooms[roomIndex].Ready2" ng-click="ready(rooms[roomIndex].RoomId, true)">Ready</button>
+            <button ng-show="rooms[roomIndex].Player1 == null || rooms[roomIndex].Player2 == null" ng-click="addAi(rooms[roomIndex].RoomId)">Add AI</button>
+            <button ng-show="(rooms[roomIndex].Player1.Name == 'AI' || rooms[roomIndex].Player2.Name == 'AI') && rooms[roomIndex].State != 1 && rooms[roomIndex].State != 2" ng-click="removeAi(rooms[roomIndex].RoomId)">Remove AI</button><br />
+            <div class="room-player" ng-class="{op07: rooms[roomIndex].Player1 == null}">Player 1: <span class="message-user">{{rooms[roomIndex].Player1.Name}} </span><span class="message-user" ng-show="rooms[roomIndex].Player1.Name == 'AI'"> (Clients: {{rooms[roomIndex].clientsCount}} <span class="refresh" ng-click="refreshClients(rooms[roomIndex].RoomId)"></span>)</span><input class="checkbox" type="checkbox" ng-model="rooms[roomIndex].Ready1" ng-change="ready(rooms[roomIndex].RoomId, rooms[roomIndex].Ready1)" ng-disabled="rooms[roomIndex].Player1.Name != user.name || (rooms[roomIndex].Ready1 && rooms[roomIndex].Ready2)" /></div>
+            <div class="room-player" ng-class="{op07: rooms[roomIndex].Player2 == null}">Player 2: <span class="message-user">{{rooms[roomIndex].Player2.Name}} </span><span class="message-user" ng-show="rooms[roomIndex].Player2.Name == 'AI'"> (Clients: {{rooms[roomIndex].clientsCount}} <span class="refresh" ng-click="refreshClients(rooms[roomIndex].RoomId)"></span>)</span><input class="checkbox" type="checkbox" ng-model="rooms[roomIndex].Ready2" ng-change="ready(rooms[roomIndex].RoomId, rooms[roomIndex].Ready2)" ng-disabled="rooms[roomIndex].Player2.Name != user.name || (rooms[roomIndex].Ready1 && rooms[roomIndex].Ready2)" /></div>
+            <div class="room-player" ng-class="{op07: rooms[roomIndex].Observers.length == 0}">Observers: <span ng-repeat="observer in rooms[roomIndex].Observers">{{observer.Name}} </span></div>
+            <div class="username">{{gameState[rooms[roomIndex].State]}}</div><br />
+
+            <table>
+                <tr ng-repeat="row in rooms[roomIndex].Game.Cells">
+                    <td class="td" ng-repeat="col in row track by $index">
+                        <div style="width: 20px; height:20px" ng-class="{pieceWhite: col == 1, pieceBlack: col == -1, pieceHover: (hover && col != 0 && rooms[roomIndex].Game.SelectedCell.X < 0 && rooms[roomIndex].Game.SelectedCell.Y < 0) || (rooms[roomIndex].Game.SelectedCell.X == $parent.$index && rooms[roomIndex].Game.SelectedCell.Y == $index), emptyHover: hover && col == 0 && (rooms[roomIndex].Game.SelectedCell.X != -1 && rooms[roomIndex].Game.SelectedCell.Y != -1)}"
+                             ng-mouseenter="hover = true"
+                             ng-mouseleave="hover = false" ng-click="setSelected(rooms[roomIndex].RoomId, $parent.$index, $index)"></div>
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <div class="chat">
+                <div class="messages" schroll-bottom="rooms[roomIndex].messages">
+                    <div ng-repeat="message in rooms[roomIndex].messages">
+                        <span class="message-user">{{message.UserName}}: </span>
+                        <span class="message-text">{{message.Text}}</span>
+                        <div ng-bind-html="message.Video"></div>
+                    </div>
+                </div>
+                <form>
+                    <input autocomplete="off" name="name" type="text" placeholder="Type a message here.." ng-model="message" />
+                    <button ng-click="sendMessage(rooms[roomIndex].RoomId, message)">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="Scripts/jquery-1.6.4.min.js"></script>
+    <!--Ссылка на библиотеку SignalR -->
+    <script src="Scripts/jquery.signalR-2.2.0.js"></script>
+    <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
+    <script src="signalr/hubs"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/app/app.js"></script>
+    <script src="Scripts/app/services.js"></script>
+    <script src="Scripts/app/controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/UgolkiService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/UgolkiService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Vector2">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="X" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Vector2" nillable="true" type="tns:Vector2" />
+  <xs:complexType name="Move">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Path" nillable="true" type="tns:ArrayOfVector2" />
+      <xs:element minOccurs="0" name="Player" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Move" nillable="true" type="tns:Move" />
+  <xs:complexType name="ArrayOfVector2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Vector2" type="tns:Vector2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVector2" nillable="true" type="tns:ArrayOfVector2" />
+  <xs:complexType name="ArrayOfMove">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Move" nillable="true" type="tns:Move" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMove" nillable="true" type="tns:ArrayOfMove" />
+</xs:schema>

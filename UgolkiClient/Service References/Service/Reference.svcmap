@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f56b6ab2-d87f-48b5-8785-59bd675b5439" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/UgolkiService/UgolkiService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UgolkiService.wsdl" MetadataType="Wsdl" ID="77100224-d693-4181-ac22-88071f1fd326" SourceId="1" SourceUrl="http://localhost/UgolkiService/UgolkiService.svc?wsdl" />
+    <MetadataFile FileName="UgolkiService1.wsdl" MetadataType="Wsdl" ID="86d5cb58-1305-4c53-86ae-8cf7b3e4b41c" SourceId="1" SourceUrl="http://localhost/UgolkiService/UgolkiService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="UgolkiService.xsd" MetadataType="Schema" ID="021bdb7a-5dc7-4a24-9467-7e7c5d54c6ef" SourceId="1" SourceUrl="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UgolkiService1.xsd" MetadataType="Schema" ID="d3cb1145-3ada-4329-8f8c-4f86d0278f9f" SourceId="1" SourceUrl="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd0" />
+    <MetadataFile FileName="UgolkiService2.xsd" MetadataType="Schema" ID="42a7ea52-ab3c-4f64-8a06-4b70fb2231a5" SourceId="1" SourceUrl="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd3" />
+    <MetadataFile FileName="UgolkiService3.xsd" MetadataType="Schema" ID="01322bb2-978e-48b0-a582-26feff01f298" SourceId="1" SourceUrl="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd2" />
+    <MetadataFile FileName="UgolkiService.disco" MetadataType="Disco" ID="68bc2d87-51d2-4b70-8d5e-5bd1b860cdff" SourceId="1" SourceUrl="http://localhost/UgolkiService/UgolkiService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://Microsoft.ServiceModel.Samples" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://Microsoft.ServiceModel.Samples" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://Microsoft.ServiceModel.Samples/Imports">
+      <xsd:import schemaLocation="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd0" namespace="http://Microsoft.ServiceModel.Samples" />
+      <xsd:import schemaLocation="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/UgolkiService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUgolkiService_GetClientsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientsCount" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_GetClientsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientsCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_GetMoves_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMoves" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_GetMoves_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMovesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_Connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_FindMoves_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FindMoves" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_FindMoves_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FindMovesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_FindMovesStart_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FindMovesStart" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_FindMovesStart_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FindMovesStartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_Test_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Test" />
+  </wsdl:message>
+  <wsdl:message name="IUgolkiService_Test_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:TestResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IUgolkiService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetClientsCount">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/GetClientsCount" message="tns:IUgolkiService_GetClientsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/GetClientsCountResponse" message="tns:IUgolkiService_GetClientsCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetMoves">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/GetMoves" message="tns:IUgolkiService_GetMoves_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/GetMovesResponse" message="tns:IUgolkiService_GetMoves_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Connect">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/Connect" message="tns:IUgolkiService_Connect_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/ConnectResponse" message="tns:IUgolkiService_Connect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FindMoves">
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/FindMoves" message="tns:IUgolkiService_FindMoves_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/FindMovesResponse" message="tns:IUgolkiService_FindMoves_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FindMovesStart">
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/FindMovesStart" message="tns:IUgolkiService_FindMovesStart_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/FindMovesStartResponse" message="tns:IUgolkiService_FindMovesStart_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Test">
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/Test" message="tns:IUgolkiService_Test_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IUgolkiService/TestResponse" message="tns:IUgolkiService_Test_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

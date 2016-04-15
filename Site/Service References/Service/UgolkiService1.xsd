@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://Microsoft.ServiceModel.Samples" elementFormDefault="qualified" targetNamespace="http://Microsoft.ServiceModel.Samples" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost/UgolkiService/UgolkiService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/UgolkiService" />
+  <xs:element name="GetClientsCount">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetClientsCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetClientsCountResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMoves">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="cells" nillable="true" type="q1:ArrayOfArrayOfint" />
+        <xs:element minOccurs="0" name="player" type="xs:int" />
+        <xs:element minOccurs="0" name="steps" type="xs:int" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/UgolkiService" minOccurs="0" name="playerPoint" type="q2:Vector2" />
+        <xs:element minOccurs="0" name="secondPlayer" type="xs:int" />
+        <xs:element minOccurs="0" name="first" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMovesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetMovesResult" nillable="true" type="q3:ArrayOfKeyValueOfMovedoublep9bd0NIA" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Connect">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindMoves">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="cells" nillable="true" type="q4:ArrayOfArrayOfint" />
+        <xs:element minOccurs="0" name="player" type="xs:int" />
+        <xs:element minOccurs="0" name="steps" type="xs:int" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/UgolkiService" minOccurs="0" name="playerPoint" type="q5:Vector2" />
+        <xs:element minOccurs="0" name="secondPlayer" type="xs:int" />
+        <xs:element minOccurs="0" name="first" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindMovesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FindMovesResult" nillable="true" type="q6:ArrayOfKeyValueOfMovedoublep9bd0NIA" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindMovesStart">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/UgolkiService" minOccurs="0" name="startMoves" nillable="true" type="q7:ArrayOfMove" />
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="cells" nillable="true" type="q8:ArrayOfArrayOfint" />
+        <xs:element minOccurs="0" name="player" type="xs:int" />
+        <xs:element minOccurs="0" name="steps" type="xs:int" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/UgolkiService" minOccurs="0" name="playerPoint" type="q9:Vector2" />
+        <xs:element minOccurs="0" name="secondPlayer" type="xs:int" />
+        <xs:element minOccurs="0" name="first" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindMovesStartResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FindMovesStartResult" nillable="true" type="q10:ArrayOfKeyValueOfMovedoublep9bd0NIA" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Test">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TestResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
